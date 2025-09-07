@@ -1,0 +1,188 @@
+/*
+  Portfolio Styles
+  - Responsive layout
+  - System-aware light/dark with CSS variables
+  - Manual toggle via checkbox and :has()
+*/
+
+/* CSS Reset (modern, minimal) */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html, body { height: 100%; }
+img { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; }
+:root { color-scheme: light dark; }
+
+/* Color tokens */
+:root {
+  /* Brand */
+  --brand: #6366f1; /* indigo-500 */
+  --brand-600: #4f46e5; /* indigo-600 */
+
+  /* Light palette */
+  --bg-light: #ffffff;
+  --bg-elev-light: #f7f7fb;
+  --text-light: #0f172a; /* slate-900 */
+  --text-muted-light: #475569; /* slate-600 */
+  --border-light: #e5e7eb; /* gray-200 */
+  --card-light: #ffffff;
+  --tag-bg-light: #eef2ff; /* indigo-50 */
+  --tag-fg-light: #3730a3; /* indigo-800 */
+  --shadow-light: 0 10px 25px rgba(2, 6, 23, 0.08);
+
+  /* Dark palette */
+  --bg-dark: #0b1220;
+  --bg-elev-dark: #0f172a;
+  --text-dark: #e5e7eb;
+  --text-muted-dark: #94a3b8;
+  --border-dark: #22304a;
+  --card-dark: #101827;
+  --tag-bg-dark: #1e293b;
+  --tag-fg-dark: #c7d2fe;
+  --shadow-dark: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+  /* Active scheme (defaults to light, overridden below) */
+  --bg: var(--bg-light);
+  --bg-elev: var(--bg-elev-light);
+  --text: var(--text-light);
+  --text-muted: var(--text-muted-light);
+  --border: var(--border-light);
+  --card: var(--card-light);
+  --tag-bg: var(--tag-bg-light);
+  --tag-fg: var(--tag-fg-light);
+  --shadow: var(--shadow-light);
+}
+
+/* Respect system preference by default */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg-dark);
+    --bg-elev: var(--bg-elev-dark);
+    --text: var(--text-dark);
+    --text-muted: var(--text-muted-dark);
+    --border: var(--border-dark);
+    --card: var(--card-dark);
+    --tag-bg: var(--tag-bg-dark);
+    --tag-fg: var(--tag-fg-dark);
+    --shadow: var(--shadow-dark);
+  }
+}
+
+/* Support manual toggle by scoping variables when the checkbox is checked */
+.page { min-height: 100%; background: var(--bg); color: var(--text); }
+.theme-toggle { position: absolute; left: -9999px; }
+
+/* When toggled, invert scheme relative to system. */
+/* Using :has() for broad browser support; if unsupported, system preference applies. */
+/* System is light -> toggle = dark */
+body:has(#themeToggle:checked) {
+  --bg: var(--bg-dark);
+  --bg-elev: var(--bg-elev-dark);
+  --text: var(--text-dark);
+  --text-muted: var(--text-muted-dark);
+  --border: var(--border-dark);
+  --card: var(--card-dark);
+  --tag-bg: var(--tag-bg-dark);
+  --tag-fg: var(--tag-fg-dark);
+  --shadow: var(--shadow-dark);
+  color-scheme: dark;
+}
+/* System is dark -> toggle = light */
+@media (prefers-color-scheme: dark) {
+  body:has(#themeToggle:checked) {
+    --bg: var(--bg-light);
+    --bg-elev: var(--bg-elev-light);
+    --text: var(--text-light);
+    --text-muted: var(--text-muted-light);
+    --border: var(--border-light);
+    --card: var(--card-light);
+    --tag-bg: var(--tag-bg-light);
+    --tag-fg: var(--tag-fg-light);
+    --shadow: var(--shadow-light);
+    color-scheme: light;
+  }
+}
+
+/* Typography */
+body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.6; }
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 3.5vw + 1rem, 3rem); font-weight: 800; }
+h2 { font-size: clamp(1.5rem, 2vw + 0.5rem, 2rem); margin-bottom: 0.75rem; font-weight: 700; }
+h3 { font-size: 1.125rem; font-weight: 700; }
+p { color: var(--text); }
+.subtitle { color: var(--text-muted); }
+.meta { color: var(--text-muted); font-size: 0.925rem; }
+.badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 999px; background: var(--tag-bg); color: var(--tag-fg); font-weight: 600; margin-bottom: 0.75rem; }
+
+/* Layout */
+.site-header { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; background: color-mix(in oklab, var(--bg), transparent 0%); border-bottom: 1px solid var(--border); backdrop-filter: saturate(180%) blur(8px); }
+.brand { font-weight: 800; color: var(--text); text-decoration: none; }
+.site-nav { display: none; gap: 1rem; }
+.site-nav a { color: var(--text-muted); text-decoration: none; font-weight: 600; }
+.site-nav a:hover { color: var(--text); }
+.controls { display: flex; align-items: center; gap: 0.5rem; }
+
+@media (min-width: 768px) {
+  .site-nav { display: flex; }
+}
+
+main { padding: 1.25rem; }
+.section { max-width: 1000px; margin: 0 auto; padding: 3rem 0; }
+.hero { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 1.25rem; max-width: 1000px; margin: 1rem auto 0; padding: 2.5rem 0 1rem; }
+.hero__media { display: flex; justify-content: center; }
+.avatar { width: 120px; height: 120px; border-radius: 999px; border: 3px solid var(--border); box-shadow: var(--shadow); background: var(--card); }
+.hero__content .cta { display: flex; gap: 0.75rem; margin-top: 1rem; }
+
+@media (min-width: 768px) {
+  .hero { grid-template-columns: 160px 1fr; gap: 2rem; }
+  .avatar { width: 160px; height: 160px; }
+}
+
+.cards { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 720px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+}
+
+.grid.projects { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 900px) {
+  .grid.projects { grid-template-columns: repeat(2, 1fr); }
+}
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1rem; box-shadow: var(--shadow); }
+.card__header { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.25rem; }
+.card__body { margin-top: 0.5rem; display: grid; gap: 0.5rem; }
+
+.project__thumb { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tags--lg .tag { padding: 0.5rem 0.75rem; }
+.tag { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.5rem; border-radius: 999px; background: var(--tag-bg); color: var(--tag-fg); font-weight: 600; font-size: 0.9rem; }
+
+.links { display: flex; gap: 0.75rem; align-items: center; }
+.link { color: var(--brand); font-weight: 700; text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 0.9rem; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); text-decoration: none; font-weight: 700; box-shadow: var(--shadow); }
+.btn:hover { border-color: var(--brand); }
+.btn--primary { background: var(--brand); border-color: var(--brand-600); color: #ffffff; }
+.btn--primary:hover { background: var(--brand-600); }
+
+.contact { display: flex; flex-direction: column; gap: 0.75rem; }
+@media (min-width: 600px) {
+  .contact { flex-direction: row; align-items: center; }
+}
+
+.site-footer { border-top: 1px solid var(--border); padding: 2rem 1.25rem; margin-top: 1rem; color: var(--text-muted); text-align: center; }
+
+/* Theme switch UI */
+.theme-switch { position: relative; width: 54px; height: 30px; border-radius: 999px; background: var(--bg-elev); border: 1px solid var(--border); padding: 2px; cursor: pointer; display: inline-grid; grid-template-columns: 1fr 1fr; align-items: center; color: var(--text-muted); }
+.theme-switch .sun, .theme-switch .moon { display: grid; place-items: center; font-size: 14px; }
+.theme-switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; transition: transform 200ms ease; box-shadow: var(--shadow); }
+/* Move knob when checked */
+body:has(#themeToggle:checked) .theme-switch::after { transform: translateX(24px); }
+
+/* Accessibility prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+

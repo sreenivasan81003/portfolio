@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio – Your Name</title>
+    <meta name="description" content="Portfolio website showcasing experience, projects, and skills.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <!-- Theme toggle input (CSS-only) -->
+    <input type="checkbox" id="themeToggle" class="theme-toggle" aria-hidden="true">
+
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="#">Your Name</a>
+        <nav class="site-nav">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="controls">
+          <label class="theme-switch" for="themeToggle" role="switch" aria-label="Toggle dark mode">
+            <span class="sun" aria-hidden="true">☀️</span>
+            <span class="moon" aria-hidden="true">🌙</span>
+          </label>
+        </div>
+      </header>
+
+      <main>
+        <!-- Hero -->
+        <section class="hero" id="home">
+          <div class="hero__media">
+            <img
+              class="avatar"
+              alt="Your portrait"
+              width="160"
+              height="160"
+              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='640'><defs/><rect width='100%' height='100%' fill='%23e5e7eb'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, sans-serif' font-size='48' fill='%236b7280'>Your%20Photo</text></svg>"
+            >
+          </div>
+          <div class="hero__content">
+            <p class="badge">Available for work</p>
+            <h1>Your Name</h1>
+            <p class="subtitle">Job Title • Specialization • Location</p>
+            <div class="cta">
+              <a class="btn btn--primary" href="#projects">View Projects</a>
+              <a class="btn" href="#contact">Contact Me</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="section">
+          <h2>About</h2>
+          <p>
+            Brief bio from your resume. Highlight your years of experience, key strengths,
+            industries, and what you are passionate about building.
+          </p>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="section">
+          <h2>Experience</h2>
+          <div class="cards">
+            <article class="card">
+              <header class="card__header">
+                <h3>Role Title – Company</h3>
+                <span class="meta">Jan 2022 – Present • Location</span>
+              </header>
+              <p>
+                One-liner impact statement. Then 2–3 concise bullet points summarizing your key
+                achievements and responsibilities.
+              </p>
+              <ul>
+                <li>Quantify impact (e.g., improved X by Y%).</li>
+                <li>List noteworthy technologies or domains.</li>
+                <li>Highlight leadership or collaboration.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <header class="card__header">
+                <h3>Previous Role – Company</h3>
+                <span class="meta">2019 – 2021 • Location</span>
+              </header>
+              <p>Short description of scope and accomplishments.</p>
+              <ul>
+                <li>Achievement or responsibility.</li>
+                <li>Achievement or responsibility.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="section">
+          <h2>Projects</h2>
+          <div class="grid projects">
+            <article class="card project">
+              <img
+                class="project__thumb"
+                alt="Project thumbnail"
+                width="640" height="360"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'><rect width='100%' height='100%' fill='%23e5e7eb'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, sans-serif' font-size='42' fill='%236b7280'>Project%20Image</text></svg>"
+              >
+              <div class="card__body">
+                <h3>Project Name</h3>
+                <p>
+                  Short description of what the project does and your role. Mention tech stack
+                  and notable outcomes.
+                </p>
+                <div class="tags">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">Responsive</span>
+                </div>
+                <div class="links">
+                  <a class="link" href="#">Live</a>
+                  <a class="link" href="#">Source</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card project">
+              <img
+                class="project__thumb"
+                alt="Project thumbnail"
+                width="640" height="360"
+                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'><rect width='100%' height='100%' fill='%23e5e7eb'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, sans-serif' font-size='42' fill='%236b7280'>Project%20Image</text></svg>"
+              >
+              <div class="card__body">
+                <h3>Another Project</h3>
+                <p>One or two lines describing the problem and solution.</p>
+                <div class="tags">
+                  <span class="tag">UI</span>
+                  <span class="tag">Accessibility</span>
+                </div>
+                <div class="links">
+                  <a class="link" href="#">Live</a>
+                  <a class="link" href="#">Source</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="section">
+          <h2>Skills</h2>
+          <div class="tags tags--lg">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Figma</span>
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="section">
+          <h2>Education</h2>
+          <div class="cards">
+            <article class="card">
+              <header class="card__header">
+                <h3>Degree • School</h3>
+                <span class="meta">2015 – 2019 • Location</span>
+              </header>
+              <p>Program details, honors, relevant coursework.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+          <h2>Contact</h2>
+          <p>Open to opportunities and collaborations. Reach me here:</p>
+          <div class="contact">
+            <a class="btn btn--primary" href="mailto:you@example.com">you@example.com</a>
+            <div class="links">
+              <a class="link" href="#">LinkedIn</a>
+              <a class="link" href="#">GitHub</a>
+              <a class="link" href="#">Twitter</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© <span id="year">2025</span> Your Name. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <!-- Optional: update year without JS dependency if you want static content only. -->
+  </body>
+  </html>
+
